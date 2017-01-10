@@ -85,9 +85,9 @@ class SQLrequete
                 echo 'format incorrect';
             }
         }
-        $stmt = $dbh->prepare('INSERT INTO `products`(`name`, `description`, `image`, `price`) VALUES (:name, :desc, :img, :price)');
-        $stmt->execute([':name' => $_POST['nomprod'], ':desc' => $_POST['desc'], ':img' => $_FILES['file']['name'], ':price' => $_POST['price']]);
-        header('Location: http://localhost/Formulaire/product.php');
+        $stmt = $dbh->prepare('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)');
+        $stmt->execute([':name_image' => $_FILES['file']['name'],':title' => $_POST['title'],':date' => CURDATE(), ':ip' => $_SERVER['REMOTE_ADDR']]);
+        header('Location: http://localhost/projet_PHP/index.php');
 
     }
 
