@@ -1,5 +1,7 @@
 <?PHP
-
+require 'connect.php';
+echo '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+var_dump($_SESSION);
 
 ?>
 

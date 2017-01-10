@@ -1,5 +1,5 @@
 <?php
-require('db_connexion.php');
+require('connect.php');
 
 ?>
 
@@ -24,12 +24,12 @@ require('db_connexion.php');
     <body>
 
         <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Inscription</p>
-        <div class="form" method="post">
+        <div class="form">
             <div class="thumbnail">LOGO</div>
-            <form class="register">
+            <form  method="post" action="function.php" class="register">
                 <input type="text" name="username" placeholder="Nom d'utilisateur"/>
                 <input type="email" name="email" placeholder="Adresse e-mail"/>
-                <input type="password" name="password" placeholder="Mot de passe"/>
+                <input type="password" name="pass" placeholder="Mot de passe"/>
                 <button type="submit" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> S'inscrire</button>
             </form>
         </div>
