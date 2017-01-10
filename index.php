@@ -44,7 +44,7 @@ require('connect.php');
             <br>
             <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <br>
-            <a href="connexion.php" class="btn blue">Uploadez vos fichiers</a>
+            <a href="connexion.php" class="btn blue animated shake">Uploadez vos fichiers</a>
                 <footer class="footer">
                     <div class="container">
                         <p class="navfooter"><a href="">Conditions d'utilisation</a>&nbsp;|&nbsp;<a href="">A Propos</a>&nbsp;|&nbsp;<a href="">Aide</a>&nbsp;|&nbsp;<a href="">Nous Contacter</a></p>
