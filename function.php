@@ -49,7 +49,7 @@ class SQLrequete
         header('Location: http://localhost/projet_PHP/connexion.php');
     }
 
-    public function view_profile()
+    public function view_profile($dbh)
     {
         if (!$_SESSION['connected']) {
             header('Location: http://localhost/projet_PHP/connexion.php');
@@ -65,39 +65,48 @@ class SQLrequete
         }
     }
 
-    public function upload()
+    public function upload($dbh)
     {
-        if (isset($_FILES['file'])) {
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
-            $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
-            finfo_close($finfo); // Fermeture de la lecture
-            $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
-            $extension = $filename[count($filename) - 1]; // L'extension du fichier
-            if (($extension == 'png' && $mime == 'image/png' && $_FILES['file']['size'] < 20971520) || ($extension == 'jpeg' && $mime == 'image/jpeg' && $_FILES['file']['size'] < 20971520)) {
-                $dossier = 'upload/' . $_SESSION['id_user'];
-                if (!is_dir($dossier)) {
-                    mkdir($dossier);
+        if (!empty($_POST)) {
+            if (isset($_FILES['file'])) {
+                $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
+                $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
+                finfo_close($finfo); // Fermeture de la lecture
+                $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
+                $extension = $filename[count($filename) - 1]; // L'extension du fichier
+                if (($extension == 'png' && $mime == 'image/png' && $_FILES['file']['size'] < 20971520) || ($extension == 'jpeg' && $mime == 'image/jpeg' && $_FILES['file']['size'] < 20971520)) {
+                    $dossier = 'upload/' . $_SESSION['id_user'];
+                    if (!is_dir($dossier)) {
+                        mkdir($dossier);
+                    }
+                    move_uploaded_file($_FILES['file']['tmp_name'],
+                        'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
+                    echo 'upload done';
+                } else {
+                    echo 'format incorrect';
                 }
-                move_uploaded_file($_FILES['file']['tmp_name'],
-                    'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
-                echo 'upload done';
-            } else {
-                echo 'format incorrect';
             }
+            $stmt = $dbh->prepare('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)');
+            $stmt->execute([':name_image' => $_FILES['file']['name'], ':title' => $_POST['title'], ':date' => CURDATE(), ':ip' => $_SERVER['REMOTE_ADDR']]);
+            header('Location: http://localhost/projet_PHP/index.php');
         }
-        $stmt = $dbh->prepare('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)');
-        $stmt->execute([':name_image' => $_FILES['file']['name'],':title' => $_POST['title'],':date' => CURDATE(), ':ip' => $_SERVER['REMOTE_ADDR']]);
-        header('Location: http://localhost/projet_PHP/index.php');
 
     }
 
-    public function modif_user()
+    public function modif_user($dbh)
     {
         if (!empty($_POST)) {
             $stmt = $dbh->prepare('UPDATE `user` SET `name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id');
             $stmt->execute([':name' => $_POST['nom'], ':password' => $_POST['pass'], ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
             header('Location: http://localhost/projet_PHP/index.php');
         }
+    }
+
+    public function last_view($dbh)
+    {
+        $req = $dbh->prepare('SELECT * FROM image ORDER BY id_image DESC LIMIT 5');
+        $req->execute();
+        public $rep = $req->fetchAll();
     }
 }
 
