@@ -20,13 +20,13 @@ require('connect.php');
         <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
         <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
-        <link rel="stylesheet" href="css/animate.css.css"> <!-- animations sheet -->
+        <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
         <script src="js/modernizr.js"></script> <!-- Modernizr -->
         <title>HostPics | hébergement gratuit d'images</title>
     </head>
     <body>
         <header>
-            <div class="cd-logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>
+            <div class="cd-logo animated bounce"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>
 
             <nav class="cd-main-nav-wrapper">
                 <ul class="cd-main-nav">
