@@ -37,10 +37,32 @@
 
     <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
 </header>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+<p><h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
+<br>
+<br>
+<div id="form">
 
-<img src="http://powerforum.newanglemedia.com/2013/themes/intellisystems/site/img/icons/user/default-profile.png" alt="" id="profile_pic">
+    <form id="setprofile" method="POST" action="quelquechose.php">
+   <p>name :</p>    <input type="text" name="name"  placeholder="enter the new Name"><br>
+    <br>
+    <p>email :</p><input type="text" name="email"   placeholder="enter the new email"><br>
+    <br>
+    <p>password :</p>    <input type="password" name="password"    placeholder="enter the new password"></input>
+    <br>
+    <br>
+                        <input type="submit" value="Submit" name="Save">
+</form>
 
-
+</div>
 <main class="cd-main-content">
     <!-- main content here -->
 </main>
