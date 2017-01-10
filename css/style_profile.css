@@ -8,14 +8,24 @@
 
 
 
+#text1 {
+
+   font-weight: bold;
+   font-size: xx-large;
+text-align: center;
+}
 
 
+input {
+
+    height: 30px;
+    width: 300px;
+}
 
 
-
-
-
-
+#form {
+    text-align: center;
+}
 
 
 
