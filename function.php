@@ -1,32 +1,47 @@
 <?php
 
-require 'connect.php';
-
 class SQLrequete
 {
-    /**
-     * SQLrequete constructor.
-     */
-    public function __construct()
-    {
+    private $dbh;
+
+    public function __construct($login, $password, $database_name, $host = 'localhost'){
+        $this->dbh = new PDO("mysql:dbname=$database_name;host=$host", $login, $password);
+        $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     }
 
-    public function inscription($dbh)
+    /**
+     * @param $query
+     * @param bool|array $params
+     * @return PDOStatement
+     */
+    public function query($query, $params = false){
+        if($params){
+            $req = $this->dbh->prepare($query);
+            $req->execute($params);
+        }else{
+            $req = $this->dbh->query($query);
+        }
+        return $req;
+    }
+
+
+    public function inscription()
     {
         if (!empty($_POST)) {
-            $stmt = $dbh->prepare('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)');
-            $stmt->execute([':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
+            $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
+                [':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
             header('Location: http://localhost/projet_PHP/connexion.php');
 
         }
     }
 
-    public function connexion($dbh)
+    public function connexion()
     {
         if (!empty($_POST)) {
-            $stmt = $dbh->prepare('SELECT * FROM `user` WHERE `user_name` = :login AND `password` = :pass');
-            $stmt->execute([':login' => $_POST['login'], ':pass' => $_POST['pass']]);
-            $a = $stmt->fetchAll();
+
+            $a = $this->query('SELECT * FROM `user` WHERE `user_name` = :login AND `password` = :pass',
+                [':login' => $_POST['login'], ':pass' => $_POST['pass']])->fetchAll();
             if (count($a) > 0) {
                 $_SESSION['connected'] = true;
                 $_SESSION['id_user'] = $a[0]['id_user'];
@@ -106,16 +121,16 @@ class SQLrequete
     {
         $req = $dbh->prepare('SELECT * FROM image ORDER BY id_image DESC LIMIT 5');
         $req->execute();
-        public $rep = $req->fetchAll();
+        $rep = $req->fetchAll();
     }
 }
 
-$req = new SQLrequete();
+$req = new SQLrequete('root','','projet_php');
 
 if ($_SERVER['HTTP_REFERER'] == $_SERVER['HTTP_ORIGIN'] . '/projet_PHP/connexion.php') {
-    $req->connexion($dbh);
+    $req->connexion();
 }
 
 if ($_SERVER['HTTP_REFERER'] == $_SERVER['HTTP_ORIGIN'] . '/projet_PHP/inscription.php') {
-    $req->inscription($dbh);
+    $req->inscription();
 }
