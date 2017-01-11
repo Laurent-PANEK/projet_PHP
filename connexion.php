@@ -25,7 +25,7 @@ $req->connexion();
 </head>
 
 <body>
-<p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Connexion</p>
+<?php include ('header.php'); ?>
 
 <div class="form">
     <div class="thumbnail">LOGO</div>
