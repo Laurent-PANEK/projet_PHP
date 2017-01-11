@@ -40,9 +40,7 @@ $req->inscription();
         <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i>
             Acceuil</a>
         <br>
-        <br>
-        <br>
-        <p>Déjà membre ?<a href="connexion.php" style="text-align:center;text-decoration:none;"> Créer un compte</a>
+        <p>Déjà membre ?<a href="connexion.php" style="text-align:center;text-decoration:none;"> Connectez vous</a>
         </p>
     </div>
     </div>
