@@ -1,5 +1,7 @@
 <?php
-
+require 'function.php';
+$req = new SQLrequete('root', '', 'projet_php');
+$req->connexion();
 
 ?>
 
@@ -27,7 +29,7 @@
 
 <div class="form">
     <div class="thumbnail">LOGO</div>
-    <form action="function.php" class="login" method="post">
+    <form action="#" class="login" method="post">
         <input name="login" type="text" placeholder="Login"/>
         <input name="pass" type="password" placeholder="Mot de passe"/>
         <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</button>

@@ -54,7 +54,7 @@ class SQLrequete
                 } else {
                     $_SESSION['admin'] = false;
                 }
-                header('Location: http://localhost/projet_PHP/index.php');
+                header('Location: http://localhost/projet_PHP/profile.php');
             } else {
                 header('Location: http://localhost/projet_PHP/index.php');
             }
@@ -68,7 +68,7 @@ class SQLrequete
         header('Location: http://localhost/projet_PHP/connexion.php');
     }
 
-    public function view_profile($dbh)
+    public function view_profile()
     {
         if (!$_SESSION['connected']) {
             header('Location: http://localhost/projet_PHP/connexion.php');
@@ -84,7 +84,7 @@ class SQLrequete
         }
     }
 
-    public function upload($dbh)
+    public function upload()
     {
         if (!empty($_POST)) {
             if (isset($_FILES['file'])) {
@@ -105,8 +105,8 @@ class SQLrequete
                     echo 'format incorrect';
                 }
             }
-            $stmt = $dbh->prepare('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)');
-            $stmt->execute([':name_image' => $_FILES['file']['name'], ':title' => $_POST['title'], ':date' => CURDATE(), ':ip' => $_SERVER['REMOTE_ADDR']]);
+            $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)',
+                [':name_image' => $_FILES['file']['name'], ':title' => $_POST['title'], ':date' => date("d/m/Y"), ':ip' => $_SERVER['REMOTE_ADDR']]);
             header('Location: http://localhost/projet_PHP/index.php');
         }
 
@@ -127,14 +127,4 @@ class SQLrequete
         $req->execute();
         $rep = $req->fetchAll();
     }
-}
-
-$req = new SQLrequete('root', '', 'projet_php');
-
-if ($_SERVER['HTTP_REFERER'] == $_SERVER['HTTP_ORIGIN'] . '/projet_PHP/connexion.php') {
-    $req->connexion();
-}
-
-if ($_SERVER['HTTP_REFERER'] == $_SERVER['HTTP_ORIGIN'] . '/projet_PHP/inscription.php') {
-    $req->inscription();
 }

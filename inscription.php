@@ -1,5 +1,7 @@
 <?php
-require('connect.php');
+require 'function.php';
+$req = new SQLrequete('root', '', 'projet_php');
+$req->inscription();
 
 ?>
 
@@ -27,7 +29,7 @@ require('connect.php');
         <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Inscription</p>
         <div class="form">
             <div class="thumbnail">LOGO</div>
-            <form  method="post" action="function.php" class="register">
+            <form  method="post" action="#" class="register">
                 <input type="text" name="username" placeholder="Nom d'utilisateur"/>
                 <input type="email" name="email" placeholder="Adresse e-mail"/>
                 <input type="password" name="pass" placeholder="Mot de passe"/>
