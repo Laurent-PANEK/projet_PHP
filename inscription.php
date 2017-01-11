@@ -17,8 +17,9 @@ $req->inscription();
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Montserrat:400,700'>
     <link rel="stylesheet" href="css/animate.css.css"> <!-- animations sheet -->
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
+
 
 
 </head>
