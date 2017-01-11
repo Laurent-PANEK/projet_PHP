@@ -25,9 +25,9 @@ session_start();
     <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <br>
     <?php if (isset($_SESSION['connected'])) {
-        echo ' <a href = "upload.php" class="btn blue animated shake" > Uploadez vos fichiers </a > ';
+        echo ' <a href = "upload.php" class="btn blue animated pulse" > Uploadez vos fichiers </a > ';
     } else {
-        echo '<a href = "connexion.php" class="btn blue animated shake" > Uploadez vos fichiers </a > ';
+        echo '<a href = "connexion.php" class="btn blue animated pulse" > Uploadez vos fichiers </a > ';
     } ?>
     <footer class="footer">
         <div class="container">
