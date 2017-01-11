@@ -35,7 +35,6 @@ $req->connexion();
 
 
     <div class="form">
-        <div class="thumbnail">LOGO</div>
         <form action="#" class="login" method="post">
             <input name="login" type="text" placeholder="Login"/>
             <input name="pass" type="password" placeholder="Mot de passe"/>

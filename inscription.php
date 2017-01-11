@@ -29,7 +29,6 @@ $req->inscription();
 <?php include('header.php'); ?>
 <div class="cd-main-content">
     <div class="form">
-        <div class="thumbnail">LOGO</div>
         <form method="post" action="#" class="register">
             <input type="text" name="username" placeholder="Nom d'utilisateur"/>
             <input type="email" name="email" placeholder="Adresse e-mail"/>
@@ -39,6 +38,8 @@ $req->inscription();
 		   <br>
         <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i>
             Acceuil</a>
+        <br>
+        <br>
         <br>
         <p>Déjà membre ?<a href="connexion.php" style="text-align:center;text-decoration:none;"> Connectez vous</a>
         </p>
