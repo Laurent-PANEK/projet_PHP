@@ -12,12 +12,14 @@ $req->upload();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
     <title>Document</title>
 </head>
 <body>
 <?php include('header.php'); ?>
-<div class="cd-main-content"></div>
-<br><br><br><br><br><br><br><br>
+<div class="cd-main-content">
+    <br><br><br><br><br>
 <form action="" enctype="multipart/form-data" method="post">
     <input type="file" name="nomDuInput" id="file">
     <input type="text" name="title" id="title" placeholder="title">
