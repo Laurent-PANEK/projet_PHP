@@ -4,10 +4,13 @@ class SQLrequete
 {
     private $dbh;
 
-    public function __construct($login, $password, $database_name, $host = 'localhost'){
-        $this->dbh = new PDO("mysql:dbname=$database_name;host=$host", $login, $password);
-        $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    public function __construct($login, $password, $database_name, $host = 'localhost')
+    {
+        try {
+            $this->dbh = new PDO("mysql:dbname=$database_name;host=$host", $login, $password);
+        } catch (PDOException $e) {
+            echo 'Connexion échouée : ' . $e->getMessage();
+        }
     }
 
     /**
@@ -15,11 +18,12 @@ class SQLrequete
      * @param bool|array $params
      * @return PDOStatement
      */
-    public function query($query, $params = false){
-        if($params){
+    public function query($query, $params = false)
+    {
+        if ($params) {
             $req = $this->dbh->prepare($query);
             $req->execute($params);
-        }else{
+        } else {
             $req = $this->dbh->query($query);
         }
         return $req;
@@ -125,7 +129,7 @@ class SQLrequete
     }
 }
 
-$req = new SQLrequete('root','','projet_php');
+$req = new SQLrequete('root', '', 'projet_php');
 
 if ($_SERVER['HTTP_REFERER'] == $_SERVER['HTTP_ORIGIN'] . '/projet_PHP/connexion.php') {
     $req->connexion();
