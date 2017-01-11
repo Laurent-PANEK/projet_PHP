@@ -10,6 +10,7 @@ $req->connexion();
 <html>
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connexion | HostPics</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -35,6 +36,12 @@ $req->connexion();
         <input name="pass" type="password" placeholder="Mot de passe"/>
         <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</button>
     </form>
+	<br>
+            <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i> Acceuil</a>
+            <br>
+            <br>
+            <br>
+            <p>Pas inscrit ?<a href="inscription.php" style="text-align:center;text-decoration:none;"> Créer un compte</a></p>
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 

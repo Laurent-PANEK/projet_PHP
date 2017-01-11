@@ -1,5 +1,5 @@
 <?php
-require('db_connexion.php');
+require('connect.php');
 
 
 ?>
