@@ -112,19 +112,22 @@ class SQLrequete
 
     }
 
-    public function modif_user($dbh)
-    {
-        if (!empty($_POST)) {
-            $stmt = $dbh->prepare('UPDATE `user` SET `name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id');
-            $stmt->execute([':name' => $_POST['nom'], ':password' => $_POST['pass'], ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
-            header('Location: http://localhost/projet_PHP/index.php');
-        }
-    }
-
-    public function last_view($dbh)
+    public function last_view()
     {
         $req = $dbh->prepare('SELECT * FROM image ORDER BY id_image DESC LIMIT 5');
         $req->execute();
         $rep = $req->fetchAll();
     }
+
+    public function view_all()
+    {
+        $f = $this->query('SELECT id_user FROM `user`')->fetchAll();
+        foreach ($f as $id) {
+            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id',[':id' => $id])->fetchAll();
+            foreach ($i as $img) {
+                echo '<img src="upload/' . $id . $img .'" height="200px" width="200px"/>';
+            }
+        }
+    }
+
 }
