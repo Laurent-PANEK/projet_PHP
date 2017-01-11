@@ -26,7 +26,7 @@ require('connect.php');
     </head>
     <body>
         <header>
-            <div class="cd-logo"><a href="#0"><img src="img/logo.png" width="70px" height="70px" alt="Logo"></a></div>
+            <div class="cd-logo"><a href="#0"><img src="img/logo.png" alt="Logo" style="max-width:100%; max-height:100%;></a></div>
 
             <nav class="cd-main-nav-wrapper">
                 <ul class="cd-main-nav">
