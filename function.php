@@ -73,15 +73,15 @@ class SQLrequete
         if (!$_SESSION['connected']) {
             header('Location: http://localhost/projet_PHP/connexion.php');
         } else {
-            $info = $dbh->prepare('SELECT * FROM `user` WHERE `id_user` = :id');
-            $info->execute([':id' => $_SESSION['id_user']]);
-            $v = $info->fetchAll();
+            $v = $this->query('SELECT * FROM `user` WHERE `id_user` = :id',
+                [':id' => $_SESSION['id_user']])->fetchAll();
             if (!empty($_POST)) {
-                $stmt = $dbh->prepare('UPDATE `user` SET `name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id');
-                $stmt->execute([':name' => $_POST['nom'], ':password' => $_POST['pass'], ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
-                header('Location: http://localhost/Formulaire/account.php');
+                $this->query('UPDATE `user` SET `user_name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id',
+                    [':name' => $_POST['name'], ':password' => $_POST['password'], ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
+                header('Location: http://localhost/projet_PHP/profile.php');
             }
         }
+        return $v;
     }
 
     public function upload()

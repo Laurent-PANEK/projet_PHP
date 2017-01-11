@@ -1,6 +1,7 @@
 <?PHP
-
-session_start();
+require 'function.php';
+$req = new SQLrequete('root', '', 'projet_php');
+$v = $req->view_profile();
 ?>
 
 
@@ -21,30 +22,26 @@ session_start();
 <body>
 <?php include('header.php'); ?>
 <div class="cd-main-content">
-    <br>
-    <br><br>
-    <br>
-    <br>
-    <br><br>
-    <br>
-    <br>
-    <br><br>
-    <br>
-    <p>
-    <h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
+    <p><h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
     <br>
     <br>
     <div id="form">
 
-        <form id="setprofile" method="POST" action="quelquechose.php">
-            <p>name :</p>    <input type="text" name="name" placeholder="enter the new Name"><br>
+        <form id="setprofile" method="POST" action="#">
+            <label for="name">Login</label>
+            <div>
+                <input type="text" name="name" id="name" value="<?= $v[0]['user_name']; ?>"<br>
+            </div>
+            <label for="email">Email</label>
+            <div>
+                <input type="text" name="email" id="email" value="<?= $v[0]['email']; ?>"><br>
+            </div>
+            <label for="password">Password</label>
+            <div>
+                <input type="password" name="password" id="password" value="<?= $v[0]['password']; ?>">
+            </div>
             <br>
-            <p>email :</p><input type="text" name="email" placeholder="enter the new email"><br>
-            <br>
-            <p>password :</p>    <input type="password" name="password" placeholder="enter the new password"></input>
-            <br>
-            <br>
-            <input type="submit" value="Submit" name="Save">
+            <button type="submit">Modifier</button>
         </form>
 
     </div>
