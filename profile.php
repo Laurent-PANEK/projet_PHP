@@ -52,9 +52,6 @@ session_start();
 </form>
 
 </div>
-<main class="cd-main-content">
-    <!-- main content here -->
-</main>
 
 </body>
 </html>

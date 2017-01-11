@@ -23,13 +23,13 @@
             <?php if (!isset($_SESSION['connected'])) {
                 echo '<li><a href="inscription.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Inscription</a></li>
                     <li><a href="connexion.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
-                    <li><a href="#0"><i class="fa fa-question" aria-hidden="true"></i> A Propos</a></li>
-                    <li><a href="#0"><i class="fa fa-phone" aria-hidden="true"></i> Nous Contacter</a></li>';
+                    <li><a href="explore.php"><i class="fa fa-eye" aria-hidden="true"></i> Explorer</a></li>
+                    // <li><a href="connexion.php"><i class="fa fa-upload" aria-hidden="true"></i> Upload</a></li>';
             } else {
                 echo '<li><a href="profile.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Profil</a></li>
                     <li><a href="deconnexion.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Deconnexion</a></li>
-                    <li><a href="#0"><i class="fa fa-question" aria-hidden="true"></i> A Propos</a></li>
-                    <li><a href="#0"><i class="fa fa-phone" aria-hidden="true"></i> Nous Contacter</a></li>';
+                    <li><a href="explore.php"><i class="fa fa-eye" aria-hidden="true"></i> Explorer</a></li>
+                    <li><a href="upload.php"><i class="fa fa-upload" aria-hidden="true"></i> Upload</a></li>';
             }
             ?>
 
