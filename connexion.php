@@ -27,6 +27,7 @@ $req->connexion();
 
 <body>
 <?php include ('header.php'); ?>
+<p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Connexion</p>
 
 <div class="form">
     <div class="thumbnail">LOGO</div>
@@ -43,6 +44,8 @@ $req->connexion();
             <p>Pas inscrit ?<a href="inscription.php" style="text-align:center;text-decoration:none;"> Créer un compte</a></p>
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
 
 <script src="js/index.js"></script>
 
