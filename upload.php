@@ -15,6 +15,7 @@ $req->upload();
     <title>Document</title>
 </head>
 <body>
+<?php include ('header.php'); ?>
 
 <form action="" enctype="multipart/form-data" method="post">
     <input type="file" name="nomDuInput" id="file">

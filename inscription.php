@@ -26,6 +26,8 @@ $req->inscription();
 
     <body>
 
+    <?php include ('header.php'); ?>
+
         <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Inscription</p>
         <div class="form">
             <div class="thumbnail">LOGO</div>

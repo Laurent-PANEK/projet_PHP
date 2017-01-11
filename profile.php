@@ -1,6 +1,6 @@
 <?PHP
 
-
+session_start();
 ?>
 
 
@@ -18,26 +18,14 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style_index.css">
     <link rel="stylesheet" href="css/style_profile.css"> <!-- Resource style -->
     <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
     <script src="js/modernizr.js"></script> <!-- Modernizr -->
     <title>HostPics | hébergement gratuit d'images</title>
 </head>
 <body>
-<header>
-    <div class="cd-logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo"></a></div>
-
-    <nav class="cd-main-nav-wrapper">
-        <ul class="cd-main-nav">
-            <li><a href="inscription.php"><i class="fa fa-home" aria-hidden="true"></i> Acceuil</a></li>
-            <li><a href="connexion.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Déconnexion</a></li>
-            <li><a href="#0"><i class="fa fa-question" aria-hidden="true"></i> A Propos</a></li>
-            <li><a href="#0"><i class="fa fa-id-badge" aria-hidden="true"></i> (°.°) USERname</a></li>
-        </ul> <!-- .cd-main-nav -->
-    </nav> <!-- .cd-main-nav-wrapper -->
-
-    <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
-</header>
+<?php include ('header.php'); ?>
 <br>
 <br><br>
 <br>
