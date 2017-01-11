@@ -20,12 +20,13 @@ require('connect.php');
         <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
         <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
+        <link rel="stylesheet" href="css/animate.css"> <!--animation-->
         <script src="js/modernizr.js"></script> <!-- Modernizr -->
         <title>HostPics | hébergement gratuit d'images</title>
     </head>
     <body>
         <header>
-            <div class="cd-logo"><a href="#0"><img src="img/logo.png" alt="Logo" style="max-width:100%; max-height:100%;"></a></div>
+            <div class="cd-logo animated bounce"><a href="#0"><img src="img/logo.png" alt="Logo" style="max-width:100%; max-height:100%;"></a></div>
 
             <nav class="cd-main-nav-wrapper">
                 <ul class="cd-main-nav">
@@ -43,7 +44,7 @@ require('connect.php');
             <br>
             <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <br>
-            <a href="connexion.php" class="btn blue">Uploadez vos fichiers</a>
+            <a href="connexion.php" class="btn blue animated shake">Uploadez vos fichiers</a>
                 <footer class="footer">
                     <div class="container">
                         <p class="navfooter"><a href="">Conditions d'utilisation</a>&nbsp;|&nbsp;<a href="">A Propos</a>&nbsp;|&nbsp;<a href="">Aide</a>&nbsp;|&nbsp;<a href="">Nous Contacter</a></p>
