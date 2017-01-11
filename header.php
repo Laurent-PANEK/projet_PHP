@@ -15,7 +15,7 @@
 <body>
 
 <header>
-    <div class="cd-logo animated bounce"><a href="#0"><img src="img/logo.png" alt="Logo"
+    <div class="cd-logo"><a href="#0"><img src="img/logo.png" alt="Logo"
                                                            style="max-width:100%; max-height:100%;"></a></div>
 
     <nav class="cd-main-nav-wrapper">
