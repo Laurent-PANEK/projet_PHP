@@ -4,11 +4,6 @@ session_start();
 ?>
 
 
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,33 +19,39 @@ session_start();
     <title>HostPics | hébergement gratuit d'images</title>
 </head>
 <body>
-<?php include ('header.php'); ?>
-<br>
-<br><br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br><br>
-<br>
-<p><h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
-<br>
-<br>
-<div id="form">
+<?php include('header.php'); ?>
+<div class="cd-main-content">
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <p>
+    <h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
+    <br>
+    <br>
+    <div id="form">
 
-    <form id="setprofile" method="POST" action="quelquechose.php">
-   <p>name :</p>    <input type="text" name="name"  placeholder="enter the new Name"><br>
-    <br>
-    <p>email :</p><input type="text" name="email"   placeholder="enter the new email"><br>
-    <br>
-    <p>password :</p>    <input type="password" name="password"    placeholder="enter the new password"></input>
-    <br>
-    <br>
-                        <input type="submit" value="Submit" name="Save">
-</form>
+        <form id="setprofile" method="POST" action="quelquechose.php">
+            <p>name :</p>    <input type="text" name="name" placeholder="enter the new Name"><br>
+            <br>
+            <p>email :</p><input type="text" name="email" placeholder="enter the new email"><br>
+            <br>
+            <p>password :</p>    <input type="password" name="password" placeholder="enter the new password"></input>
+            <br>
+            <br>
+            <input type="submit" value="Submit" name="Save">
+        </form>
 
+    </div>
 </div>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/main.js"></script> <!--Resource jQuery-->
 
 </body>
 </html>

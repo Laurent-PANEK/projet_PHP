@@ -10,7 +10,7 @@ $req->connexion();
 <html>
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connexion | HostPics</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -21,33 +21,39 @@ $req->connexion();
     <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="css/animate.css"> <!--animation-->
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
 
 
 </head>
 
 <body>
-<?php include ('header.php'); ?>
-<p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Connexion</p>
+<?php include('header.php'); ?>
+<div class="cd-main-content">
 
-<div class="form">
-    <div class="thumbnail">LOGO</div>
-    <form action="#" class="login" method="post">
-        <input name="login" type="text" placeholder="Login"/>
-        <input name="pass" type="password" placeholder="Mot de passe"/>
-        <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</button>
-    </form>
-	<br>
-            <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i> Acceuil</a>
-            <br>
-            <br>
-            <br>
-            <p>Pas inscrit ?<a href="inscription.php" style="text-align:center;text-decoration:none;"> Créer un compte</a></p>
+    <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Connexion</p>
+
+    <div class="form">
+        <div class="thumbnail">LOGO</div>
+        <form action="#" class="login" method="post">
+            <input name="login" type="text" placeholder="Login"/>
+            <input name="pass" type="password" placeholder="Mot de passe"/>
+            <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</button>
+        </form>
+        <br>
+        <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i>
+            Acceuil</a>
+        <br>
+        <br>
+        <br>
+        <p>Pas inscrit ?<a href="inscription.php" style="text-align:center;text-decoration:none;"> Créer un compte</a>
+        </p>
+    </div>
 </div>
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
 <script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
-
-<script src="js/index.js"></script>
-
+<script src="js/main.js"></script> <!--Resource jQuery-->
 </body>
 </html>
