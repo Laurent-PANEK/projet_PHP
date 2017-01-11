@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SQLrequete
 {
     private $dbh;
@@ -65,7 +65,7 @@ class SQLrequete
     {
         session_unset();
         session_destroy();
-        header('Location: http://localhost/projet_PHP/connexion.php');
+        header('Location: http://localhost/projet_PHP/index.php');
     }
 
     public function view_profile()
