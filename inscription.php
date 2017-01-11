@@ -36,6 +36,15 @@ $req->inscription();
             <input type="password" name="pass" placeholder="Mot de passe"/>
             <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> S'inscrire</button>
         </form>
+		   <br>
+        <a href="index.php" style="float:right;text-decoration:none;"><i class="fa fa-home" aria-hidden="true"></i>
+            Acceuil</a>
+        <br>
+        <br>
+        <br>
+        <p>Déjà membre ?<a href="connexion.php" style="text-align:center;text-decoration:none;"> Créer un compte</a>
+        </p>
+    </div>
     </div>
 </div>
 <script src="js/jquery-2.1.1.js"></script>
