@@ -28,7 +28,6 @@ $req->inscription();
 
 <?php include('header.php'); ?>
 <div class="cd-main-content">
-    <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Inscription</p>
     <div class="form">
         <div class="thumbnail">LOGO</div>
         <form method="post" action="#" class="register">

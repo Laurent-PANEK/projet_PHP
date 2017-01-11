@@ -33,7 +33,6 @@ $req->connexion();
 <?php include('header.php'); ?>
 <div class="cd-main-content">
 
-    <p style="color:blue; text-align:center;margin-top:20px;font-size:30px;">Connexion</p>
 
     <div class="form">
         <div class="thumbnail">LOGO</div>
