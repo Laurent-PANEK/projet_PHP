@@ -19,6 +19,7 @@
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="css/style_profile.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
     <script src="js/modernizr.js"></script> <!-- Modernizr -->
     <title>HostPics | hébergement gratuit d'images</title>
 </head>
