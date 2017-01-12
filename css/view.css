@@ -1,0 +1,13 @@
+.imgsrc {
+    float: left;
+}
+
+.links {
+    float: right;
+}
+
+.all1{
+    margin: 20vh 10vw 0 10vw;
+    width: 80vw;
+    height: 60vh;
+}
