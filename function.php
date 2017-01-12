@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('display_errors',1);
+ini_set('error_reporting',E_ALL);
 class SQLrequete
 {
     private $dbh;
@@ -105,9 +107,10 @@ class SQLrequete
                     echo 'format incorrect';
                 }
             }
-            $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`) VALUES (:name, :title, :date, :ip)',
-                [':name_image' => $_FILES['file']['name'], ':title' => $_POST['title'], ':date' => date("d/m/Y"), ':ip' => $_SERVER['REMOTE_ADDR']]);
-            header('Location: http://localhost/projet_PHP/index.php');
+            $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
+                [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
+            header('Location: http://localhost/projet_PHP/explore.php');
+
         }
 
     }
@@ -125,7 +128,7 @@ class SQLrequete
         foreach ($f as $id) {
             $i = $this->query('SELECT name_image FROM image WHERE id_user = :id',[':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img src="upload/' . $id['id_user'] . $img['name_image'] .'" height="200px" width="200px"/>';
+                echo '<img src="upload/' . $id['id_user'] .'/'. $img['name_image'] .'" height="200px" width="200px"/>';
             }
         }
     }
