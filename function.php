@@ -118,7 +118,7 @@ class SQLrequete
                             'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
                         $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
                             [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-                        header('Location: http://localhost/projet_PHP/explore.php');
+                        header('Location: http://localhost/projet_PHP/myimage.php');
                     } else {
                         echo '<div class="alert">Fichier trop volumineux !</div>';
                     }
