@@ -26,15 +26,22 @@
 <div class="cd-main-content">
 <div class="all1">
     <img class="imgsrc" src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" alt="error">
+   <div class="from">
     <form class="links" action="">
-        <p></p>
-        <input type="text" name="" id="">
+        <?php  echo 'code <\HTML> : '   ?>
         <br>
         <input type="text" name="" id="">
+        <br>
+        <?php  echo 'code <\HTML> : '   ?>
+        <br>
+        <input type="text" name="" id="">
+        <br>
+        <?php  echo 'code <\HTML> : '   ?>
         <br>
         <input type="text" name="" id="">
         <br>
     </form>
+   </div>
 
 
 

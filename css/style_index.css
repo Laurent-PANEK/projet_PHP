@@ -157,7 +157,7 @@ p .navfooter {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.cd-logo img {
+.cd-logo .imglogo {
     display: block;
     max-width: 100%;
     margin-top: 14px;
@@ -168,19 +168,19 @@ p .navfooter {
         z-index: 2;
         margin-left: 5%;
     }
-    .cd-logo img {
+    .cd-logo .imglogo {
         margin-top:-1px;
     }
 
 
 }
 @media screen and (max-width: 1024px) {
-    img{
+    .imglogo  {
         width: 50px;
         height: 50px;
     }
 
-    .cd-logo img {
+    .cd-logo .imglogo{
         margin-top:0px;
     }
 

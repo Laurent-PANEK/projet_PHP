@@ -1,5 +1,14 @@
+.form{
+    background-color: #1a1a1a;
+    width: 40vw;
+    height: 60vh;
+
+
+}
 .imgsrc {
     float: left;
+    min-width: 300px ;
+    min-height: 300px;
 }
 
 .links {
@@ -7,6 +16,7 @@
 }
 
 .all1{
+    background-color: #1a1a1a;
     margin: 20vh 10vw 0 10vw;
     width: 80vw;
     height: 60vh;
