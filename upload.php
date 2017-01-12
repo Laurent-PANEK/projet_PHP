@@ -1,4 +1,4 @@
-²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²<?php
+<?php
 require 'function.php';
 $req = new SQLrequete('root', '', 'projet_php');
 $req->upload();
@@ -27,7 +27,7 @@ $req->upload();
 <form  action="" enctype="multipart/form-data" method="post">
 
       <div class="imgcenter">  <img  src="img/upload.png" width="150px" height="120px" alt="" class="myAvatar" style="position:; top:0; left:0; z-index:1;min-height: 120px;min-width: 150px" >
-        <input type="file" name="newAvatar" id="newAvatar" style="width:100%x; height:150px; position:relative; top:0px; left:0; z-index:2; opacity:0;">
+        <input type="file" name="file" id="file" style="width:100%x; height:150px; position:relative; top:0px; left:0; z-index:2; opacity:0;">
 
 <div class="hover1">
     <input class="title" type="text" name="title"  placeholder="TITLE">
