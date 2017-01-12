@@ -40,15 +40,14 @@ class SQLrequete
             $an = [];
             $all_name = $this->query('SELECT user_name, email FROM `user`')->fetchAll();
             foreach ($all_name as $a) {
-                array_push($an,$a['user_name']);
-                array_push($ae,$a['email']);
+                array_push($an, $a['user_name']);
+                array_push($ae, $a['email']);
             }
             if (in_array($_POST['username'], $an) or in_array($_POST['email'], $ae)) {
                 echo '<div class="alert">Votre Nom d\'utilisateur et/ou email est déjà utilisé ! Veuillez changer.</div>';
-            }
-            else {
+            } else {
                 $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
-                    [':name' => $_POST['username'], ':password' => crypt($_POST['pass'],'$2a$'), ':email' => $_POST['email']]);
+                    [':name' => $_POST['username'], ':password' => crypt($_POST['pass'], '$2a$'), ':email' => $_POST['email']]);
                 header('Location: http://localhost/projet_PHP/connexion.php');
             }
         }
@@ -59,7 +58,7 @@ class SQLrequete
         if (!empty($_POST)) {
 
             $a = $this->query('SELECT * FROM `user` WHERE (`user_name` = :login OR email = :email )AND `password` = :pass',
-                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => crypt($_POST['pass'],'$2a$')])->fetchAll();
+                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => crypt($_POST['pass'], '$2a$')])->fetchAll();
             if (count($a) > 0) {
                 $_SESSION['connected'] = true;
                 $_SESSION['id_user'] = $a[0]['id_user'];
@@ -91,7 +90,7 @@ class SQLrequete
                 [':id' => $_SESSION['id_user']])->fetchAll();
             if (!empty($_POST)) {
                 $this->query('UPDATE `user` SET `user_name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id',
-                    [':name' => $_POST['name'], ':password' => crypt($_POST['password'],'$2a$'), ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
+                    [':name' => $_POST['name'], ':password' => crypt($_POST['password'], '$2a$'), ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
                 header('Location: http://localhost/projet_PHP/profile.php');
             }
         }
@@ -119,9 +118,8 @@ class SQLrequete
                             'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
                         $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
                             [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-                        header('Location: http://localhost/projet_PHP/explore.php');
-                    }
-                    else {
+                        header('Location: http://localhost/projet_PHP/myimage.php');
+                    } else {
                         echo '<div class="alert">Fichier trop volumineux !</div>';
                     }
 
@@ -153,10 +151,19 @@ class SQLrequete
 
     public function view_perso()
     {
-        $p = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
+        $p = $this->query('SELECT name_image,id_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
         foreach ($p as $img) {
-            echo '<img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
+            echo '<img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>
+            <a href="delete.php?id=' . $img['id_image'] . '">Supprimer</a>';
         }
+    }
+
+    public function delete()
+    {
+        $p = $this->query('SELECT * FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
+        unlink('upload/'. $_SESSION['id_user'] . '/' . $p[0]['name_image']);
+        $this->query('DELETE FROM image WHERE id_image = :id',[':id' => $_GET['id']]);
+        header('Location: http://localhost/projet_PHP/myimage.php');
     }
 
 }
