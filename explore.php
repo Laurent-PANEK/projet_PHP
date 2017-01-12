@@ -6,7 +6,7 @@ $req = new SQLrequete('root', '', 'projet_php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi"/>
@@ -23,14 +23,17 @@ $req = new SQLrequete('root', '', 'projet_php');
 <body>
 <?php include('header.php'); ?>
 
-<?php $req->view_all(); ?>
+<div class="cd-main-content">
 
-<footer>
-    <div id="footer">
-        <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
-                href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
-    </div>
-</footer>
+    <?php $req->view_all(); ?>
+
+    <footer>
+        <div id="footer">
+            <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
+                        href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
+        </div>
+    </footer>
+</div>
 </div>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/main.js"></script> <!--Resource jQuery-->

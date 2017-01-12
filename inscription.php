@@ -1,7 +1,6 @@
 <?php
 require 'function.php';
 $req = new SQLrequete('root', '', 'projet_php');
-$req->inscription();
 
 ?>
 
@@ -27,7 +26,9 @@ $req->inscription();
 <body>
 
 <?php include('header.php'); ?>
+
 <div class="cd-main-content">
+    <?php $req->inscription(); ?>
     <div class="form">
        <h3 style="text-transform:uppercase;margin-bottom:15px;">Inscription</h3>
         <form method="post" action="#" class="register">

@@ -1,7 +1,8 @@
 <?php
 session_start();
-ini_set('display_errors',1);
-ini_set('error_reporting',E_ALL);
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
+
 class SQLrequete
 {
     private $dbh;
@@ -35,9 +36,23 @@ class SQLrequete
     public function inscription()
     {
         if (!empty($_POST)) {
-            $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
-                [':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
-            header('Location: http://localhost/projet_PHP/connexion.php');
+            $ae = [];
+            $an = [];
+            $all_name = $this->query('SELECT user_name, email FROM `user`')->fetchAll();
+            foreach ($all_name as $a) {
+                array_push($an,$a['user_name']);
+                array_push($ae,$a['email']);
+            }
+
+            if (in_array($_POST['username'], $an) or in_array($_POST['email'], $ae)) {
+                echo '<div class="alert">Votre Nom d\'utilisateur et/ou email est déjà utilisé !. Veuillez changer.</div>';
+            }
+            else {
+                $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
+                    [':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
+                header('Location: http://localhost/projet_PHP/connexion.php');
+            }
+
 
         }
     }
@@ -95,21 +110,22 @@ class SQLrequete
                 finfo_close($finfo); // Fermeture de la lecture
                 $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
                 $extension = $filename[count($filename) - 1]; // L'extension du fichier
-                if (($extension == 'png' && $mime == 'image/png' && $_FILES['file']['size'] < 20971520) || ($extension == 'jpeg' && $mime == 'image/jpeg' && $_FILES['file']['size'] < 20971520)) {
+                $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
+                $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
+                if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide) && $_FILES['file']['size'] < 20971520)) {
                     $dossier = 'upload/' . $_SESSION['id_user'];
                     if (!is_dir($dossier)) {
                         mkdir($dossier);
                     }
                     move_uploaded_file($_FILES['file']['tmp_name'],
                         'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
-                    echo 'upload done';
+                    $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
+                        [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
+                    header('Location: http://localhost/projet_PHP/explore.php');
                 } else {
                     echo 'format incorrect';
                 }
             }
-            $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
-                [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-            header('Location: http://localhost/projet_PHP/explore.php');
 
         }
 
@@ -117,17 +133,17 @@ class SQLrequete
 
     public function last_view()
     {
-       $rep = $this->query('SELECT * FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
-       return $rep;
+        $rep = $this->query('SELECT * FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
+        return $rep;
     }
 
     public function view_all()
     {
         $f = $this->query('SELECT id_user FROM `user`')->fetchAll();
         foreach ($f as $id) {
-            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id',[':id' => $id['id_user']])->fetchAll();
+            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img src="upload/' . $id['id_user'] .'/'. $img['name_image'] .'" height="200px" width="200px"/>';
+                echo '<img src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
             }
         }
     }
