@@ -29,6 +29,7 @@ $req->inscription();
 <?php include('header.php'); ?>
 <div class="cd-main-content">
     <div class="form">
+       <h3 style="text-transform:uppercase;margin-bottom:15px;">Inscription</h3>
         <form method="post" action="#" class="register">
             <input type="text" name="username" placeholder="Nom d'utilisateur"/>
             <input type="email" name="email" placeholder="Adresse e-mail"/>

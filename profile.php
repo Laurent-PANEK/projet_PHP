@@ -14,7 +14,7 @@ $v = $req->view_profile();
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="css/style_index.css">
-    <link rel="stylesheet" href="css/style_profile.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
     <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
     <script src="js/modernizr.js"></script> <!-- Modernizr -->
     <title>HostPics | hébergement gratuit d'images</title>
@@ -22,13 +22,14 @@ $v = $req->view_profile();
 <body>
 <?php include('header.php'); ?>
 <div class="cd-main-content">
-    <p><h3 style="margin:  20px" id="text1">Change account informations :</h3></p>
+    <p>
+    <h3 style=" font-size: 20px;margin-top:  30px; margin-bottom:-30px; color:white; text-transform:uppercase; font-weight:bold;" id="text1">Change account informations :</h3></p>
     <br>
     <br>
-    <div id="form">
+    <div class="form">
 
         <form id="setprofile" method="POST" action="#">
-            <label for="name">Login</label>
+            <label for="name">Nom d'utilisateur</label>
             <div>
                 <input type="text" name="name" id="name" value="<?= $v[0]['user_name']; ?>"<br>
             </div>
