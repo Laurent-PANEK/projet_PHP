@@ -48,7 +48,7 @@ class SQLrequete
             }
             else {
                 $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
-                    [':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
+                    [':name' => $_POST['username'], ':password' => crypt($_POST['pass'],'$2a$'), ':email' => $_POST['email']]);
                 header('Location: http://localhost/projet_PHP/connexion.php');
             }
         }
@@ -59,7 +59,7 @@ class SQLrequete
         if (!empty($_POST)) {
 
             $a = $this->query('SELECT * FROM `user` WHERE (`user_name` = :login OR email = :email )AND `password` = :pass',
-                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => $_POST['pass']])->fetchAll();
+                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => crypt($_POST['pass'],'$2a$')])->fetchAll();
             if (count($a) > 0) {
                 $_SESSION['connected'] = true;
                 $_SESSION['id_user'] = $a[0]['id_user'];
@@ -91,7 +91,7 @@ class SQLrequete
                 [':id' => $_SESSION['id_user']])->fetchAll();
             if (!empty($_POST)) {
                 $this->query('UPDATE `user` SET `user_name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id',
-                    [':name' => $_POST['name'], ':password' => $_POST['password'], ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
+                    [':name' => $_POST['name'], ':password' => crypt($_POST['password'],'$2a$'), ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
                 header('Location: http://localhost/projet_PHP/profile.php');
             }
         }
