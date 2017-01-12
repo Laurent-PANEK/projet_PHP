@@ -123,9 +123,9 @@ class SQLrequete
     {
         $f = $this->query('SELECT id_user FROM `user`')->fetchAll();
         foreach ($f as $id) {
-            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id',[':id' => $id])->fetchAll();
+            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id',[':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img src="upload/' . $id . $img .'" height="200px" width="200px"/>';
+                echo '<img src="upload/' . $id['id_user'] . $img['name_image'] .'" height="200px" width="200px"/>';
             }
         }
     }
