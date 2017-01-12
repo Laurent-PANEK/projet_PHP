@@ -61,8 +61,8 @@ class SQLrequete
     {
         if (!empty($_POST)) {
 
-            $a = $this->query('SELECT * FROM `user` WHERE `user_name` = :login AND `password` = :pass',
-                [':login' => $_POST['login'], ':pass' => $_POST['pass']])->fetchAll();
+            $a = $this->query('SELECT * FROM `user` WHERE (`user_name` = :login OR email = :email )AND `password` = :pass',
+                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => $_POST['pass']])->fetchAll();
             if (count($a) > 0) {
                 $_SESSION['connected'] = true;
                 $_SESSION['id_user'] = $a[0]['id_user'];
@@ -143,7 +143,7 @@ class SQLrequete
         foreach ($f as $id) {
             $i = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
+                echo '<img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
             }
         }
     }

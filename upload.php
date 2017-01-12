@@ -24,23 +24,23 @@ $req->upload();
 <div class="cd-main-content">
     <div class="all" style="background-color: dimgrey ; margin: 10vh 20vw 0 20vw; min-width: 250px; min-height: 360px;">
         <br><br><br>
-<form  action="" enctype="multipart/form-data" method="post">
+        <form action="" enctype="multipart/form-data" method="post">
 
-      <div class="imgcenter">  <img  src="img/upload.png" width="150px" height="120px" alt="" class="myAvatar" style="position:; top:0; left:0; z-index:1;min-height: 120px;min-width: 150px" >
-        <input type="file" name="file" id="file" style="width:100%x; height:150px; position:relative; top:0px; left:0; z-index:2; opacity:0;">
+            <div class="imgcenter"><img src="img/upload.png" width="150px" height="120px" alt="" class="myAvatar"
+                                        style="position:; top:0; left:0; z-index:1;min-height: 120px;min-width: 150px">
+                <input type="file" name="file" id="file"
+                       style="width:100%x; height:150px; position:relative; top:0px; left:0; z-index:2; opacity:0;">
 
-<div class="hover1">
-    <input class="title" type="text" name="title"  placeholder="TITLE">
+                <div class="hover1">
+                    <input class="title" type="text" name="title" placeholder="TITLE">
 
-    <br>
+                    <br>
 
-    <button class="button" style="vertical-align:middle"><span>Hover </span>
-</div>
+                    <button class="button" style="vertical-align:middle"><span>Hover </span>
+                </div>
 
-</form>
+        </form>
     </div>
-</div>
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!--Resource jQuery-->
+    <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -42,14 +42,6 @@ $f = $req->last_view();
         </ul>
     </div>
 
-    <footer>
-        <div id="footer">
-            <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
-                        href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
-        </div>
-    </footer>
-</div>
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!--Resource jQuery-->
+    <?php include 'footer.php'; ?>
 </body>
 </html>

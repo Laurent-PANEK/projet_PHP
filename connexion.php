@@ -50,9 +50,6 @@ $req->connexion();
         <p>Pas inscrit ?<a href="inscription.php" style="text-align:center;text-decoration:none;"> Créer un compte</a>
         </p>
     </div>
-</div>
-
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!--Resource jQuery-->
+    <?php include 'footer.php'; ?>
 </body>
 </html>

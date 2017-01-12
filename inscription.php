@@ -46,10 +46,6 @@ $req = new SQLrequete('root', '', 'projet_php');
         <p>Déjà membre ?<a href="connexion.php" style="text-align:center;text-decoration:none;"> Connectez vous</a>
         </p>
     </div>
-    </div>
-</div>
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/main.js"></script> <!--Resource jQuery-->
-
+    <?php include 'footer.php'; ?>
 </body>
 </html>
