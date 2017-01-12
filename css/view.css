@@ -1,3 +1,18 @@
+h3.titleimg {
+text-align: center;
+
+}
+
+
+p.titleid {
+
+ color: white;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-top: 5px;
+
+}
+
 .form{
     margin: 5vh 0 0 0;
 
@@ -6,29 +21,33 @@
 .imgsrc {
     height: 71vh;
     width: 40vw;
-    margin: 5vh 0 0 5vh;
+    margin: 0vh 0 0 0vh;
     float: left;
-    min-width: 300px ;
-    min-height: 300px;
+    min-width: 500px ;
+
 }
 
 .links {
     float: left;
-    margin: 20vh 0 0 5vh ;
+    margin: 5vh 0 0 5vh ;
 }
 
 .all1 {
     background-color: #1a1a1a;
-    margin: 20vh 10vw 0 10vw;
+    margin: 5vh 10vw 0 10vw;
     width: 80vw;
     height: 100vh;
+    min-width: 580px;
 }
 
 .input{
-
-    width: 20vw ;
+    height: 5vh;
+    width: 30vw ;
     border-radius: 5px;
 }
 .html1 {
     color: white;
+}
+.cd-main-content {
+    height: 100%;
 }

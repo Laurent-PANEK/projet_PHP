@@ -25,19 +25,23 @@
 <?php include('header.php'); ?>
 <div class="cd-main-content">
 <div class="all1">
+    <div class="imgtitle">
     <img class="imgsrc" src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" alt="error">
+
+    <p class="titleid"> TITLE HERE  : <p>
+    </div>
    <div class="form">
     <form class="links" action="">
-       <p class="html1">  code <\HTML> : </p>
-        <input class="input" type="text" name="" id="">
+       <p class="html1">  code de l'image : </p>
+        <input class="input" type="text" name="" placeholder="the link to the image here">
         <br>
         <p class="html1">  code <\HTML> : </p>
 
-        <input class="input" type="text" name="" id="">
+        <input class="input" type="text" name="" placeholder="the link to the image here">
         <br>
-        <p class="html1">  code <\HTML> : </p>
+        <p class="html1">  Autre Code img: </p>
 
-        <input class="input" type="text" name="" id="">
+        <input class="input" type="text" name="" placeholder="the link to the image here">
         <br>
     </form>
    </div>
