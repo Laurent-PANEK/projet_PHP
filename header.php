@@ -27,7 +27,8 @@
                      <li><a href="connexion.php"><i class="fa fa-upload" aria-hidden="true"></i> Upload</a></li>';
             } else {
                 echo '<li><a href="profile.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Profil</a></li>
-                    <li><a href="deconnexion.php"><i class="fa fa-sign-in" aria-hidden="true"></i> Deconnexion</a></li>
+					<li><a href="myimage.php"><i class="fa fa-picture-o" aria-hidden="true"></i> Mes images</a></li>
+                    <li><a href="deconnexion.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a></li>
                     <li><a href="explore.php"><i class="fa fa-eye" aria-hidden="true"></i> Explorer</a></li>
                     <li><a href="upload.php"><i class="fa fa-upload" aria-hidden="true"></i> Upload</a></li>';
             }
