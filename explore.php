@@ -21,3 +21,18 @@ $req = new SQLrequete('root', '', 'projet_php');
     <title>HostPics | hébergement gratuit d'images</title>
 </head>
 <body>
+<?php include('header.php'); ?>
+
+<?php $req->view_all(); ?>
+
+<footer>
+    <div id="footer">
+        <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
+                href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
+    </div>
+</footer>
+</div>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/main.js"></script> <!--Resource jQuery-->
+</body>
+</html>

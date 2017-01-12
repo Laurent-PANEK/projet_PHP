@@ -117,9 +117,8 @@ class SQLrequete
 
     public function last_view()
     {
-        $req = $dbh->prepare('SELECT * FROM image ORDER BY id_image DESC LIMIT 5');
-        $req->execute();
-        $rep = $req->fetchAll();
+       $rep = $this->query('SELECT * FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
+       return $rep;
     }
 
     public function view_all()
