@@ -41,10 +41,9 @@ session_start();
                 </ul>
             </div>
 
-            <footer class="footer">
-                <div class="container">
-                    <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
-                                                                                                                                       href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
+                <footer>
+                <div id="footer">
+                    <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
                 </div>
             </footer>
         </div>

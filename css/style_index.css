@@ -110,12 +110,14 @@ header::before {
     background-color: #22427C;
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
+#footer {
+    display: inline-block;
     width: 100%;
-    height: 60px;
-
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 5%;
+    bottom: 0;
 }
 .container{
     display: inline-block;
@@ -123,9 +125,8 @@ header::before {
     width: 100%;
     height: 100%;
 }
-navfooter{
-
-    margin-top: 30px;
+p .navfooter {
+    text-align: center;
 }
 @media only screen and (min-width: 1024px) {
     header {
