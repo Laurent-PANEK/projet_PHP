@@ -35,6 +35,7 @@ $req->connexion();
 
 
     <div class="form">
+       <h3 style="text-transform:uppercase; margin-bottom:15px;">Connexion</h3>
         <form action="#" class="login" method="post">
             <input name="login" type="text" placeholder="Login"/>
             <input name="pass" type="password" placeholder="Mot de passe"/>
