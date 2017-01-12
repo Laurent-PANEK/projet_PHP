@@ -23,7 +23,7 @@ $v = $req->view_profile();
 <?php include('header.php'); ?>
 <div class="cd-main-content">
     <p>
-    <h3 style=" font-size: 20px;margin-top:  30px; margin-bottom:-30px; color:white; text-transform:uppercase; font-weight:bold;" id="text1">Change account informations :</h3></p>
+    <h3 style=" font-size: 20px;margin-top:  30px; margin-bottom:-30px; color:white; text-transform:uppercase; font-weight:bold;" id="text1">Modification d'informations utilisateur</h3></p>
     <br>
     <br>
     <div class="form">

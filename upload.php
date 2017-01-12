@@ -17,7 +17,7 @@ $req->upload();
     <link rel="stylesheet" href="css/animate.css"> <!--animation-->
     <link rel="stylesheet" href="css/upload.css">
 
-    <title>Document</title>
+    <title>Upload</title>
 </head>
 <body>
 <?php include('header.php'); ?>
