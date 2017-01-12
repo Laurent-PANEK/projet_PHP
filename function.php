@@ -43,17 +43,14 @@ class SQLrequete
                 array_push($an,$a['user_name']);
                 array_push($ae,$a['email']);
             }
-
             if (in_array($_POST['username'], $an) or in_array($_POST['email'], $ae)) {
-                echo '<div class="alert">Votre Nom d\'utilisateur et/ou email est déjà utilisé !. Veuillez changer.</div>';
+                echo '<div class="alert">Votre Nom d\'utilisateur et/ou email est déjà utilisé ! Veuillez changer.</div>';
             }
             else {
                 $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
                     [':name' => $_POST['username'], ':password' => $_POST['pass'], ':email' => $_POST['email']]);
                 header('Location: http://localhost/projet_PHP/connexion.php');
             }
-
-
         }
     }
 
@@ -112,18 +109,24 @@ class SQLrequete
                 $extension = $filename[count($filename) - 1]; // L'extension du fichier
                 $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
                 $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
-                if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide) && $_FILES['file']['size'] < 20971520)) {
-                    $dossier = 'upload/' . $_SESSION['id_user'];
-                    if (!is_dir($dossier)) {
-                        mkdir($dossier);
+                if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide))) {
+                    if ($_FILES['file']['size'] < 20971520) {
+                        $dossier = 'upload/' . $_SESSION['id_user'];
+                        if (!is_dir($dossier)) {
+                            mkdir($dossier);
+                        }
+                        move_uploaded_file($_FILES['file']['tmp_name'],
+                            'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
+                        $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
+                            [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
+                        header('Location: http://localhost/projet_PHP/explore.php');
                     }
-                    move_uploaded_file($_FILES['file']['tmp_name'],
-                        'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
-                    $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
-                        [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-                    header('Location: http://localhost/projet_PHP/explore.php');
+                    else {
+                        echo '<div class="alert">Fichier trop volumineux !</div>';
+                    }
+
                 } else {
-                    echo 'format incorrect';
+                    echo '<div class="alert">Format incorrect !</div>';
                 }
             }
 
@@ -143,8 +146,16 @@ class SQLrequete
         foreach ($f as $id) {
             $i = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
+                echo '<img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>';
             }
+        }
+    }
+
+    public function view_perso()
+    {
+        $p = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
+        foreach ($p as $img) {
+            echo '<img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200px" width="200px"/>';
         }
     }
 

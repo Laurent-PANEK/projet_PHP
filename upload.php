@@ -1,8 +1,6 @@
 <?php
 require 'function.php';
 $req = new SQLrequete('root', '', 'projet_php');
-$req->upload();
-
 ?>
 
 <!doctype html>
@@ -22,6 +20,7 @@ $req->upload();
 <body>
 <?php include('header.php'); ?>
 <div class="cd-main-content">
+    <?php $req->upload(); ?>
     <div class="all" style="background-color: dimgrey ; margin: 10vh 20vw 0 20vw; min-width: 250px; min-height: 360px;">
         <br><br><br>
         <form action="" enctype="multipart/form-data" method="post">
