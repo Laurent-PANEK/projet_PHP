@@ -48,7 +48,7 @@ class SQLrequete
             } else {
                 $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
                     [':name' => $_POST['username'], ':password' => crypt($_POST['pass'], '$2a$'), ':email' => $_POST['email']]);
-                header('Location: http://localhost/projet_PHP/connexion.php');
+                header('Location: connexion.php');
             }
         }
     }
@@ -67,9 +67,9 @@ class SQLrequete
                 } else {
                     $_SESSION['admin'] = false;
                 }
-                header('Location: http://localhost/projet_PHP/profile.php');
+                header('Location: profile.php');
             } else {
-                header('Location: http://localhost/projet_PHP/index.php');
+                header('Location: index.php');
             }
         }
     }
@@ -78,20 +78,20 @@ class SQLrequete
     {
         session_unset();
         session_destroy();
-        header('Location: http://localhost/projet_PHP/index.php');
+        header('Location: index.php');
     }
 
     public function view_profile()
     {
         if (!$_SESSION['connected']) {
-            header('Location: http://localhost/projet_PHP/connexion.php');
+            header('Location: connexion.php');
         } else {
             $v = $this->query('SELECT * FROM `user` WHERE `id_user` = :id',
                 [':id' => $_SESSION['id_user']])->fetchAll();
             if (!empty($_POST)) {
                 $this->query('UPDATE `user` SET `user_name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id',
                     [':name' => $_POST['name'], ':password' => crypt($_POST['password'], '$2a$'), ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
-                header('Location: http://localhost/projet_PHP/profile.php');
+                header('Location: profile.php');
             }
         }
         return $v;
@@ -168,7 +168,7 @@ class SQLrequete
         $p = $this->query('SELECT * FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
         unlink('upload/' . $_SESSION['id_user'] . '/' . $p[0]['name_image']);
         $this->query('DELETE FROM image WHERE id_image = :id', [':id' => $_GET['id']]);
-        header('Location: http://localhost/projet_PHP/myimage.php');
+        header('Location: myimage.php');
     }
 
     public function  stat_view($id)

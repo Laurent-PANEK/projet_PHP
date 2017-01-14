@@ -1,6 +1,6 @@
 <?php
 require 'function.php';
-$req = new SQLrequete('root', '', 'projet_php');
+$req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
 
 ?>
 

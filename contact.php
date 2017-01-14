@@ -1,11 +1,7 @@
 <?php 
 require 'function.php';
-if (empty($_POST)){
-
-
-    echo "Veuillez renseigner les champs";
-}
-else{
+$req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
+if (!empty($_POST)){
     $name=$_POST['name'];
     $email=$_POST['email'];
     $message=$_POST['message'];
@@ -53,6 +49,5 @@ else{
                 </form>
             </div>
             <?php include 'footer.php'; ?>
-        </div>
     </body>
 </html>
