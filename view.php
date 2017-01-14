@@ -2,7 +2,7 @@
 require 'function.php';
 $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
 $v = $req->view();
-$r =$req->stat_view($_GET['id']);
+$r =$req->stat_view(htmlspecialchars($_GET['id']));
 ?>
 
 

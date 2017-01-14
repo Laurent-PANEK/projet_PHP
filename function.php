@@ -43,11 +43,11 @@ class SQLrequete
                 array_push($an, $a['user_name']);
                 array_push($ae, $a['email']);
             }
-            if (in_array($_POST['username'], $an) or in_array($_POST['email'], $ae)) {
+            if (in_array(htmlspecialchars($_POST['username']), $an) or in_array(htmlspecialchars($_POST['email']), $ae)) {
                 echo '<div class="alert">Votre Nom d\'utilisateur et/ou email est déjà utilisé ! Veuillez changer.</div>';
             } else {
                 $this->query('INSERT INTO `user`(`user_name`, `password`, `email`) VALUES (:name, :password, :email)',
-                    [':name' => $_POST['username'], ':password' => crypt($_POST['pass'], '$2a$'), ':email' => $_POST['email']]);
+                    [':name' => htmlspecialchars($_POST['username']), ':password' => crypt(htmlspecialchars($_POST['pass']), '$5$rounds=2000$usesomesillystringforsalt$'), ':email' => htmlspecialchars($_POST['email'])]);
                 header('Location: connexion.php');
             }
         }
@@ -58,7 +58,7 @@ class SQLrequete
         if (!empty($_POST)) {
 
             $a = $this->query('SELECT * FROM `user` WHERE (`user_name` = :login OR email = :email )AND `password` = :pass',
-                [':login' => $_POST['login'], ':email' => $_POST['login'], ':pass' => crypt($_POST['pass'], '$2a$')])->fetchAll();
+                [':login' => htmlspecialchars($_POST['login']), ':email' => htmlspecialchars($_POST['login']), ':pass' => crypt(htmlspecialchars($_POST['pass']), '$5$rounds=2000$usesomesillystringforsalt$')])->fetchAll();
             if (count($a) > 0) {
                 $_SESSION['connected'] = true;
                 $_SESSION['id_user'] = $a[0]['id_user'];
@@ -69,7 +69,7 @@ class SQLrequete
                 }
                 header('Location: profile.php');
             } else {
-                header('Location: connexion.php');
+                echo '<div class="alert">Vos identifiants sont incorrects !</div>';
             }
         }
     }
@@ -90,7 +90,7 @@ class SQLrequete
                 [':id' => $_SESSION['id_user']])->fetchAll();
             if (!empty($_POST)) {
                 $this->query('UPDATE `user` SET `user_name`= :name,`password`= :password,`email`= :email WHERE `id_user` = :id',
-                    [':name' => $_POST['name'], ':password' => crypt($_POST['password'], '$2a$'), ':email' => $_POST['email'], ':id' => $_SESSION['id_user']]);
+                    [':name' => htmlspecialchars($_POST['name']), ':password' => crypt(htmlspecialchars($_POST['password']), '$5$rounds=2000$usesomesillystringforsalt$'), ':email' => htmlspecialchars($_POST['email']), ':id' => $_SESSION['id_user']]);
                 header('Location: profile.php');
             }
         }
@@ -134,7 +134,7 @@ class SQLrequete
 
     public function last_view()
     {
-        $rep = $this->query('SELECT * FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
+        $rep = $this->query('SELECT id_image,name_image,id_user FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
         foreach ($rep as $img) {
             echo '<li><a href="view.php?id=' . $img['id_image'] . '"><img src="upload/' . $img['id_user'] . '/' . $img['name_image'] . '" width="200" height="150px" alt="image01"></a></li>';
         }
@@ -142,12 +142,9 @@ class SQLrequete
 
     public function view_all()
     {
-        $f = $this->query('SELECT id_user FROM `user`')->fetchAll();
-        foreach ($f as $id) {
-            $i = $this->query('SELECT id_image,name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
-            foreach ($i as $img) {
-                echo '<a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/></a>';
-            }
+        $i = $this->query('SELECT id_image,name_image,id_user FROM image ORDER BY id_image DESC')->fetchAll();
+        foreach ($i as $img) {
+            echo '<a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $img['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/></a>';
         }
     }
 
@@ -166,7 +163,7 @@ class SQLrequete
 
     public function view()
     {
-        $v = $this->query('SELECT * FROM image WHERE id_image = :id', [':id' => $_GET['id']])->fetchAll();
+        $v = $this->query('SELECT * FROM image WHERE id_image = :id', [':id' => htmlspecialchars($_GET['id'])])->fetchAll();
         return $v;
     }
 
@@ -175,7 +172,7 @@ class SQLrequete
     {
         $p = $this->query('SELECT * FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
         unlink('upload/' . $_SESSION['id_user'] . '/' . $p[0]['name_image']);
-        $this->query('DELETE FROM image WHERE id_image = :id', [':id' => $_GET['id']]);
+        $this->query('DELETE FROM image WHERE id_image = :id', [':id' => htmlspecialchars($_GET['id'])]);
         header('Location: myimage.php');
     }
 
