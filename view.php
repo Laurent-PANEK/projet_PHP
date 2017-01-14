@@ -37,11 +37,11 @@ $r =$req->stat_view($_GET['id']);
                 <br>
                 <p class=" html1"> Balise <\HTML> : </p>
                 <textarea class="input" name="" id="" cols="25"
-                          rows="5"><?php echo '<a href="https://hostpics.000webhostapp.com/view.php?id=' . $v[0]['id_image'] . '"><img src="https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['id_image'] . '" alt=""/></a>' ?></textarea>
+                          rows="5"><?php echo '<a href="https://hostpics.000webhostapp.com/view.php?id=' . $v[0]['id_image'] . '"><img src="https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['name_image'] . '" alt=""/></a>' ?></textarea>
                 <br>
                 <p class=" html1">URL de l'image: </p>
                 <textarea class="input" name="" id="" cols="25"
-                          rows="1"><?php echo 'https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['id_image']; ?></textarea>
+                          rows="1"><?php echo 'https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['name_image']; ?></textarea>
                 <br>
             </form>
         </div>
