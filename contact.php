@@ -2,13 +2,14 @@
 require 'function.php';
 $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
 if (!empty($_POST)){
-    $name=$_POST['name'];
-    $email=$_POST['email'];
-    $message=$_POST['message'];
-    $to="exemple@gmail.com";
-    $subject="Message envoyé via le formulaire de contact";
-    mail($to, $subject, $message, "From :" . $name);
-    header('location:index.php');
+    $name= htmlspecialchars($_POST['name']);
+    $email= htmlspecialchars($_POST['email']);
+    $message= htmlspecialchars($_POST['message']);
+    $to="laurent.panek@ynov.com";
+    $headers = 'From' . $name . ' : ' .$email ."\r \n";
+    $subject='Hostpics Contact : ' . $name;
+    mail($to, $subject, $message, $headers);
+
     echo "<script>alert(\"Message envoyé\")</script>";
 
 }?>
