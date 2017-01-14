@@ -17,7 +17,7 @@ $req = new SQLrequete('root', '', 'projet_php');
     <link rel="stylesheet" href="css/animate.css"> <!--animation-->
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="css/component.css"/>
-    <title>Upload</title>
+    <title>HostPics | hébergement gratuit d'images</title>
 </head>
 <body>
 <?php include('header.php'); ?>

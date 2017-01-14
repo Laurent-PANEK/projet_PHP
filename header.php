@@ -16,7 +16,7 @@
 
 <header>
     <div class="cd-logo"><a href="index.php"><img class="imglogo" src="img/logo.png" alt="Logo"
-                                                           style="max-width:100%; max-height:100%;"></a></div>
+                                                  style="max-width:100%; max-height:100%;"></a></div>
 
     <nav class="cd-main-nav-wrapper">
         <ul class="cd-main-nav">

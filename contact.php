@@ -1,9 +1,21 @@
 <?php 
 require 'function.php';
-$req = new SQLrequete('root', '', 'projet_php');
-?>
+if (empty($_POST)){
 
 
+    echo "Veuillez renseigner les champs";
+}
+else{
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $message=$_POST['message'];
+    $to="exemple@gmail.com";
+    $subject="Message envoyé via le formulaire de contact";
+    mail($to, $subject, $message, "From :" . $name);
+    header('location:index.php');
+    echo "<script>alert(\"Message envoyé\")</script>";
+
+}?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,14 +29,14 @@ $req = new SQLrequete('root', '', 'projet_php');
         <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
         <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
         <link rel="stylesheet" href="css/contact.css">
-        <title>Contact | HostPics</title>
+        <title>HostPics | hébergement gratuit d'images<</title>
     </head>
     <body>
-    <?php include('header.php'); ?>
+    <?php include 'header.php'; ?>
         <div class="cd-main-content">
             <div class="container">  
-                <form id="contact" action="envoi.php" method="POST">
-                    <h3>Conatctez Nous</h3>
+                <form id="contact" action="#" method="POST">
+                    <h3>Contactez Nous</h3>
                     <h4>Formulaire de Contact HostPics</h4>
                     <fieldset>
                         <input name="name" placeholder="Votre nom" type="text" tabindex="1" required autofocus>

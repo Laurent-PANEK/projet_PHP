@@ -18,7 +18,7 @@ $r =$req->stat_view($_GET['id']);
     <link rel="stylesheet" href="css/animate.css"> <!--animation-->
     <link rel="stylesheet" href="css/view.css">
 
-    <title>Upload</title>
+    <title>HostPics | hébergement gratuit d'images</title>
 </head>
 <body>
 <?php include('header.php'); ?>

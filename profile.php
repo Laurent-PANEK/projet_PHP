@@ -46,7 +46,7 @@ $v = $req->view_profile();
         </form>
 
     </div>
-</div>
+<?php include 'footer.php' ?>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/main.js"></script> <!--Resource jQuery-->
