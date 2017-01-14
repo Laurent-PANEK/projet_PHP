@@ -1,7 +1,6 @@
 <?PHP
 require 'function.php';
 $req = new SQLrequete('root', '', 'projet_php');
-$f = $req->last_view();
 
 ?>
 <!DOCTYPE html>
@@ -35,10 +34,7 @@ $f = $req->last_view();
     <br><br>
     <div class="tableimg">
         <ul id="gallery">
-            <?php foreach ($f as $img) {
-                echo '<li><a href="#"><img src="upload/' . $img['id_user'] . '/' . $img['name_image'] . '" width="200" height="150px" alt="image01"></a></li>';
-            }
-            ?>
+            <?php $req->last_view(); ?>
         </ul>
     </div>
 

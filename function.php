@@ -99,52 +99,50 @@ class SQLrequete
 
     public function upload()
     {
-        if (!empty($_POST)) {
-            if (isset($_FILES['file'])) {
-                $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
-                $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
-                finfo_close($finfo); // Fermeture de la lecture
-                $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
-                $extension = $filename[count($filename) - 1]; // L'extension du fichier
-                $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
-                $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
-                if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide))) {
-                    if ($_FILES['file']['size'] < 20971520) {
-                        $dossier = 'upload/' . $_SESSION['id_user'];
-                        if (!is_dir($dossier)) {
-                            mkdir($dossier);
-                        }
-                        move_uploaded_file($_FILES['file']['tmp_name'],
-                            'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
-                        $this->query('INSERT INTO `image`(`name_image`, `title`, `date`, `ip_address`, `id_user`) VALUES (:name, :title, NOW(), :ip, :id)',
-                            [':name' => $_FILES['file']['name'], ':title' => $_POST['title'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-                        header('Location: http://localhost/projet_PHP/myimage.php');
-                    } else {
-                        echo '<div class="alert">Fichier trop volumineux !</div>';
+        if (isset($_FILES['file'])) {
+            $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
+            $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
+            finfo_close($finfo); // Fermeture de la lecture
+            $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
+            $extension = $filename[count($filename) - 1]; // L'extension du fichier
+            $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
+            $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
+            if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide))) {
+                if ($_FILES['file']['size'] < 20971520) {
+                    $dossier = 'upload/' . $_SESSION['id_user'];
+                    if (!is_dir($dossier)) {
+                        mkdir($dossier);
                     }
-
+                    move_uploaded_file($_FILES['file']['tmp_name'],
+                        'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
+                    $this->query('INSERT INTO `image`(`name_image`, `date`, `ip_address`, `id_user`) VALUES (:name, NOW(), :ip, :id)',
+                        [':name' => $_FILES['file']['name'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
+                    echo '<div class="alert success"><strong>Upload réussi !</strong> Votre image a bien été envoyé.</div>';
                 } else {
-                    echo '<div class="alert">Format incorrect !</div>';
+                    echo '<div class="alert"><strong>Echec ! </strong>Fichier trop volumineux !</div>';
                 }
+
+            } else {
+                echo '<div class="alert"><strong>Echec ! </strong>Format incorrect !</div>';
             }
-
         }
-
     }
 
     public function last_view()
     {
         $rep = $this->query('SELECT * FROM image ORDER BY id_image DESC LIMIT 5')->fetchAll();
-        return $rep;
+        foreach ($rep as $img) {
+            echo '<li><a href="view.php?id=' . $img['id_image'] . '"><img src="upload/' . $img['id_user'] . '/' . $img['name_image'] . '" width="200" height="150px" alt="image01"></a></li>';
+        }
     }
 
     public function view_all()
     {
         $f = $this->query('SELECT id_user FROM `user`')->fetchAll();
         foreach ($f as $id) {
-            $i = $this->query('SELECT name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
+            $i = $this->query('SELECT id_image,name_image FROM image WHERE id_user = :id', [':id' => $id['id_user']])->fetchAll();
             foreach ($i as $img) {
-                echo '<img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>';
+                echo '<a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $id['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/></a>';
             }
         }
     }
@@ -153,17 +151,37 @@ class SQLrequete
     {
         $p = $this->query('SELECT name_image,id_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
         foreach ($p as $img) {
-            echo '<img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>
-            <a href="delete.php?id=' . $img['id_image'] . '">Supprimer</a>';
+            echo '<div class="aff"><a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>
+            </a><br><a href="delete.php?id=' . $img['id_image'] . '">Supprimer</a></div>';
         }
     }
+
+    public function view()
+    {
+        $v = $this->query('SELECT * FROM image WHERE id_image = :id', [':id' => $_GET['id']])->fetchAll();
+        return $v;
+    }
+
 
     public function delete()
     {
         $p = $this->query('SELECT * FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
-        unlink('upload/'. $_SESSION['id_user'] . '/' . $p[0]['name_image']);
-        $this->query('DELETE FROM image WHERE id_image = :id',[':id' => $_GET['id']]);
+        unlink('upload/' . $_SESSION['id_user'] . '/' . $p[0]['name_image']);
+        $this->query('DELETE FROM image WHERE id_image = :id', [':id' => $_GET['id']]);
         header('Location: http://localhost/projet_PHP/myimage.php');
+    }
+
+    public function  stat_view($id)
+    {
+        $rep = $this->query('SELECT * FROM image WHERE id_image = :id',[':id' => $id])->fetchAll();
+        if ($rep[0]['nb_view'] == NULL) {
+           $this->query('UPDATE image SET nb_view = 1 WHERE id_image = :id',[':id' => $id]);
+        }
+        else {
+           $this->query('UPDATE image SET nb_view = nb_view + 1 WHERE id_image = :id',[':id' => $id]);
+        }
+        $re = $this->query('SELECT * FROM image WHERE id_image = :id',[':id' => $id])->fetchAll();
+        return $re;
     }
 
 }

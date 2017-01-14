@@ -7,6 +7,8 @@
 html {
     font-size: 62.5%;
 }
+
+
 .cd-main-content {
     background: url(../img/backgr.jpg) no-repeat center center fixed ;
     background-size: cover;
@@ -114,11 +116,8 @@ header::before {
     display: inline-block;
     width: 100%;
     text-align: center;
-    position: fixed;
-    margin-top: 15%;
-    bottom: 5%;
-    right: 0%;
-    left: 0%;
+    position: inherit;
+    margin-top: 2%;
 }
 .container{
     display: inline-block;
@@ -127,9 +126,20 @@ header::before {
     height: 100%;
     right: 0%;
 }
-p .navfooter {
+div.navfooter {
+    position: static;
     text-align: center;
+    margin-bottom: 2%;
 }
+
+div span {
+    color: #c0c0c0;
+}
+
+.t-min {
+    min-height: 70vh;
+}
+
 @media only screen and (min-width: 1024px) {
     header {
         height: 80px;
@@ -668,4 +678,12 @@ p .navfooter {
     background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+}
+.alert.success {
+    background-color: #4CAF50;
+}
+
+.aff {
+    display: inline-block;
+    margin: 5px;
 }
