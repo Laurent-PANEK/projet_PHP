@@ -69,7 +69,7 @@ class SQLrequete
                 }
                 header('Location: profile.php');
             } else {
-                header('Location: index.php');
+                header('Location: connexion.php');
             }
         }
     }
@@ -99,31 +99,35 @@ class SQLrequete
 
     public function upload()
     {
-        if (isset($_FILES['file'])) {
-            $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
-            $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
-            finfo_close($finfo); // Fermeture de la lecture
-            $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
-            $extension = $filename[count($filename) - 1]; // L'extension du fichier
-            $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
-            $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
-            if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide))) {
-                if ($_FILES['file']['size'] < 20971520) {
-                    $dossier = 'upload/' . $_SESSION['id_user'];
-                    if (!is_dir($dossier)) {
-                        mkdir($dossier);
+        if (!$_SESSION['connected']) {
+            header('Location: connexion.php');
+        } else {
+            if (isset($_FILES['file'])) {
+                $finfo = finfo_open(FILEINFO_MIME_TYPE); // Vérifie le type MIME du fichier
+                $mime = finfo_file($finfo, $_FILES['file']['tmp_name']); // Regarde dans ce fichier le type MIME
+                finfo_close($finfo); // Fermeture de la lecture
+                $filename = explode('.', $_FILES['file']['name']); // Explosion du nom sur le point
+                $extension = $filename[count($filename) - 1]; // L'extension du fichier
+                $extension_valide = ['png', 'jpeg', 'gif', 'jpg'];
+                $mime_valide = ['image/png', 'image/jpeg', 'image/gif', 'image/jpg'];
+                if ((in_array($extension, $extension_valide) && in_array($mime, $mime_valide))) {
+                    if ($_FILES['file']['size'] < 20971520) {
+                        $dossier = 'upload/' . $_SESSION['id_user'];
+                        if (!is_dir($dossier)) {
+                            mkdir($dossier);
+                        }
+                        move_uploaded_file($_FILES['file']['tmp_name'],
+                            'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
+                        $this->query('INSERT INTO `image`(`name_image`, `date`, `ip_address`, `id_user`) VALUES (:name, NOW(), :ip, :id)',
+                            [':name' => $_FILES['file']['name'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
+                        echo '<div class="alert success"><strong>Upload réussi !</strong> Votre image a bien été envoyé.</div>';
+                    } else {
+                        echo '<div class="alert"><strong>Echec ! </strong>Fichier trop volumineux !</div>';
                     }
-                    move_uploaded_file($_FILES['file']['tmp_name'],
-                        'upload/' . $_SESSION['id_user'] . '/' . $_FILES['file']['name']);
-                    $this->query('INSERT INTO `image`(`name_image`, `date`, `ip_address`, `id_user`) VALUES (:name, NOW(), :ip, :id)',
-                        [':name' => $_FILES['file']['name'], ':ip' => $_SERVER['REMOTE_ADDR'], ':id' => $_SESSION['id_user']]);
-                    echo '<div class="alert success"><strong>Upload réussi !</strong> Votre image a bien été envoyé.</div>';
-                } else {
-                    echo '<div class="alert"><strong>Echec ! </strong>Fichier trop volumineux !</div>';
-                }
 
-            } else {
-                echo '<div class="alert"><strong>Echec ! </strong>Format incorrect !</div>';
+                } else {
+                    echo '<div class="alert"><strong>Echec ! </strong>Format incorrect !</div>';
+                }
             }
         }
     }
@@ -149,10 +153,14 @@ class SQLrequete
 
     public function view_perso()
     {
-        $p = $this->query('SELECT name_image,id_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
-        foreach ($p as $img) {
-            echo '<div class="aff"><a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>
+        if (!$_SESSION['connected']) {
+            header('Location: connexion.php');
+        } else {
+            $p = $this->query('SELECT name_image,id_image FROM image WHERE id_user = :id', [':id' => $_SESSION['id_user']])->fetchAll();
+            foreach ($p as $img) {
+                echo '<div class="aff"><a href="view.php?id=' . $img['id_image'] . '"><img class="imgs" src="upload/' . $_SESSION['id_user'] . '/' . $img['name_image'] . '" height="200vh" width="300vw"/>
             </a><br><a href="delete.php?id=' . $img['id_image'] . '">Supprimer</a></div>';
+            }
         }
     }
 
@@ -171,16 +179,15 @@ class SQLrequete
         header('Location: myimage.php');
     }
 
-    public function  stat_view($id)
+    public function stat_view($id)
     {
-        $rep = $this->query('SELECT * FROM image WHERE id_image = :id',[':id' => $id])->fetchAll();
+        $rep = $this->query('SELECT * FROM image WHERE id_image = :id', [':id' => $id])->fetchAll();
         if ($rep[0]['nb_view'] == NULL) {
-           $this->query('UPDATE image SET nb_view = 1 WHERE id_image = :id',[':id' => $id]);
+            $this->query('UPDATE image SET nb_view = 1 WHERE id_image = :id', [':id' => $id]);
+        } else {
+            $this->query('UPDATE image SET nb_view = nb_view + 1 WHERE id_image = :id', [':id' => $id]);
         }
-        else {
-           $this->query('UPDATE image SET nb_view = nb_view + 1 WHERE id_image = :id',[':id' => $id]);
-        }
-        $re = $this->query('SELECT * FROM image WHERE id_image = :id',[':id' => $id])->fetchAll();
+        $re = $this->query('SELECT * FROM image WHERE id_image = :id', [':id' => $id])->fetchAll();
         return $re;
     }
 
