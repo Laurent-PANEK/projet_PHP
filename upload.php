@@ -27,6 +27,7 @@ $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
         <form action="" enctype="multipart/form-data" method="post">
 
             <div class="box">
+                <span>Format accepté : .JPG,.JPEG,.PNG,.GIF Taile max : 20 MO</span>
                 <input type="file" name="file" id="file" class="inputfile inputfile-2"
                        data-multiple-caption="{count} files selected" multiple/>
                 <label for="file">
