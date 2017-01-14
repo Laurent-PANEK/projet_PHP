@@ -10,6 +10,8 @@ $req = new SQLrequete('root', '', 'projet_php');
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch'href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="css/style_index.css"> <!-- Resource style -->
     <link rel="stylesheet" href="css/animate.css"> <!--animation-->
@@ -33,8 +35,9 @@ $req = new SQLrequete('root', '', 'projet_php');
 				<br>
 				<input id="round" type="submit" value="Upload" />
 	</form>
+	<?php include 'footer.php'; ?>
 </div>
-<?php include 'footer.php'; ?>
+
 
 <script> $(document).ready(function() {
         $("#file-2").on('change', function() {

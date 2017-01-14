@@ -15,8 +15,8 @@
 <body>
 <footer>
         <div id="footer">
-            <p class="navfooter"><a href="">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href=""> A Propos </a>&nbsp;|&nbsp;<a
-                        href=""> Aide</a>&nbsp;|&nbsp;<a href=""> Nous Contacter </a></p>
+            <p class="navfooter"><a href="terms.php">Conditions d'utilisation </a>&nbsp;|&nbsp;<a href="about.php"> A Propos </a>&nbsp;|&nbsp;<a
+                        href="help.php"> Aide</a>&nbsp;|&nbsp;<a href="contact.php"> Nous Contacter </a></p>
         </div>
     </footer>
 </div>

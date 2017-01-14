@@ -189,6 +189,20 @@ p .navfooter {
 
 }
 
+.row {
+    height: auto;
+    margin: 2% 2%  0% 2% ;
+    border-radius: 2px;
+    text-align: justify;
+    color: #D3D3D3;
+    font-weight: normal;
+}
+.tterms{
+    font-size: 30px;
+    color: white;
+   font-weight: bold;
+    
+}
 .cd-nav-trigger {
     display: block;
     position: absolute;

@@ -25,7 +25,7 @@ $f = $req->last_view();
 <div class="cd-main-content">
     <h1 class=" headtitle">Hébergez gratuitement vos images.</h1>
     <br>
-    <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p class="small">“C'est Simple, Rapide et Sécurisé”</p>
     <br>
     <?php if (isset($_SESSION['connected'])) {
         echo ' <a href = "upload.php" class="btn blue animated pulse" > Uploadez vos fichiers </a > ';
