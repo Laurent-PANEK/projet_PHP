@@ -114,16 +114,18 @@ header::before {
     display: inline-block;
     width: 100%;
     text-align: center;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 5%;
-    bottom: 0;
+    position: fixed;
+    margin-top: 15%;
+    bottom: 5%;
+    right: 0%;
+    left: 0%;
 }
 .container{
     display: inline-block;
     text-align: inherit;
     width: 100%;
     height: 100%;
+    right: 0%;
 }
 p .navfooter {
     text-align: center;
