@@ -41,7 +41,7 @@ $r =$req->stat_view($_GET['id']);
                 <br>
                 <p class=" html1">URL de l'image: </p>
                 <textarea class="input" name="" id="" cols="40"
-                          rows="1"><?php echo 'https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['name_image']; ?></textarea>
+                          rows="2"><?php echo 'https://hostpics.000webhostapp.com/upload/' . $v[0]['id_user'] . '/' . $v[0]['name_image']; ?></textarea>
                 <br>
             </form>
         </div>
