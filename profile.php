@@ -17,7 +17,7 @@ $v = $req->view_profile();
     <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
     <link rel="stylesheet" href="css/animate.css"> <!-- animations sheet -->
     <script src="js/modernizr.js"></script> <!-- Modernizr -->
-    <title>HostPics | hébergement gratuit d'images</title>
+    <title>Mon Profil | HostPics  </title>
 </head>
 <body>
 <?php include('header.php'); ?>

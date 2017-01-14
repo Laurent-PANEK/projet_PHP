@@ -6,7 +6,6 @@ $req = new SQLrequete('root', '', 'projet_php');
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -26,7 +25,8 @@ $req = new SQLrequete('root', '', 'projet_php');
             <br>
             <br>
             <br>
-            <p> Voici ce qui ne peut pas être uploadé sur les serveurs de HostPics: <br> <br><br> -Les images sous copyright dont vous ne possédez pas le droit d'auteur et pour lesquelles vous ne pouvez pas obtenir de droits. <br> <br><br> -Toute image reflétant violence ou discrimination contre toute personne, groupe ou organisation. <br> <br><br> NOTE : Si vous n'êtes pas sûr que l'image que vous voulez télécharger est autorisée, alors ne la téléchargez pas. Les images téléchargées sont vérifiées par le personnel et les images qui violent les termes seront supprimées sans avertissement préalable. Cela peut également vous interdire de notre site Web.
+            <p> Voici ce qui ne peut pas être uploadé sur les serveurs de HostPics: <br> <br><br> -Les images sous copyright dont vous ne possédez pas le droit d'auteur et pour lesquelles vous ne pouvez pas obtenir de droits. <br> <br><br> -Toute image reflétant violence ou discrimination contre toute personne, groupe ou organisation. <br> <br><br><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+ NOTE : Si vous n'êtes pas sûr que l'image que vous voulez télécharger est autorisée, alors ne la téléchargez pas. Les images téléchargées sont vérifiées par le personnel et les images qui violent les termes seront supprimées sans avertissement préalable. Cela peut également vous interdire de notre site Web.
 
             </p>
             </div>
