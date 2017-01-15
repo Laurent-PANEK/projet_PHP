@@ -16,6 +16,8 @@ $r =$req->stat_view(htmlspecialchars($_GET['id']));
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch'
           href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style_index.css">
     <link rel="stylesheet" href="css/animate.css"> <!--animation-->
     <link rel="stylesheet" href="css/view.css">

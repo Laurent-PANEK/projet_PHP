@@ -10,6 +10,8 @@ $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi"/>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch'
