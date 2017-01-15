@@ -1,6 +1,7 @@
 <?php 
 require 'function.php';
 $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
+$envoie = false;
 if (!empty($_POST)){
     $name= htmlspecialchars($_POST['name']);
     $email= htmlspecialchars($_POST['email']);
@@ -9,9 +10,7 @@ if (!empty($_POST)){
     $headers = 'From' . $name . ' : ' .$email ."\r \n";
     $subject='Hostpics Contact : ' . $name;
     mail($to, $subject, $message, $headers);
-
-    echo "<script>alert(\"Message envoyé\")</script>";
-
+    $envoie = true;
 }?>
 
 <!DOCTYPE html>
@@ -33,6 +32,9 @@ if (!empty($_POST)){
     <body>
     <?php include 'header.php'; ?>
         <div class="cd-main-content">
+            <?php if ($envoie == true) {
+                echo '<div class="alert success"><strong>Envoi réussi !</strong> Votre message a bien été envoyé.</div>';
+            }?>
             <div class="container">  
                 <form id="contact" action="#" method="POST">
                     <h3>Contactez Nous</h3>
