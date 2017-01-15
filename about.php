@@ -26,7 +26,7 @@ $req = new SQLrequete('id542258_root', 'hostpics', 'id542258_projet_php');
                 <br>
                 <br>
                 <p>
-                HostPics a été créé en janvier 2017 pour permettre à ses utilisateurs de stocker leus photos. HostPics est un hébergeur gratuit d'images. C'est simple, gratuit et sécurisé. <br>
+                HostPics a été créé en janvier 2017 pour permettre à ses utilisateurs de stocker leus photos. HostPics est un hébergeur gratuit d'images. C'est simple, rapide et sécurisé. <br>
                 <br>
                 <br>
                 <h2 class="tterms">Remerciements</h2>
